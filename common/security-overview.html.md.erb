@@ -53,7 +53,7 @@ All components in SCS force HTTPS for all inbound requests. Because SSL terminat
 
 All outbound HTTP requests made by SCS components are also made over HTTPS. These requests nearly always contain credentials, and are made to other components within the Cloud Foundry environment. In an environment that uses self-signed certificates in the HA proxy configuration, outbound HTTPS requests to other components would fail because the self-signed certificate would not be trusted by the JVM's default truststore (e.g. ```cacerts```). To get around this, all components use the [cloudfoundry-certificate-truster](http://central.maven.org/maven2/io/pivotal/spring/cloud/cloudfoundry-certificate-truster/1.0.1.RELEASE/) to add the CF environment's SSL certificate to the JVM's truststore on application startup.
 
-The SSL certificate used by the CF environment must also include Subject Alternative Names (SANs) for domain wildcards ```*.login.domain.com``` and ```*.uaa.domain.com```. This is needed for the correct operation [of Multi-tenant UAA](http://docs.pivotal.io/pivotalcf/concepts/architecture/uaa.html), which relies on subdomains of UAA.
+The SSL certificate used by the CF environment must also include Subject Alternative Names (SANs) for domain wildcards ```*.login.sys.domain.com``` and ```*.uaa.sys.domain.com```. This is needed for the correct operation [of Multi-tenant UAA](http://docs.pivotal.io/pivotalcf/concepts/architecture/uaa.html), which relies on subdomains of UAA.
 
 ## <a id="multi-tenant-uaa"></a>A Note on Multi-Tenant UAA
 
